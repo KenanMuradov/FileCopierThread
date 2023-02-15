@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileCopierThread"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="600">
+        Title="MainWindow" Height="250" Width="610">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -23,7 +23,8 @@
                 HorizontalAlignment="Left" 
                 BorderThickness="2" 
                 materialDesign:HintAssist.Hint ="Copy From"
-                materialDesign:HintAssist.HintOpacity="0.75"/>
+                materialDesign:HintAssist.HintOpacity="0.75"
+                Text="{Binding FilePath,UpdateSourceTrigger=PropertyChanged}"/>
 
             <Button 
                 x:Name="btnFrom"
@@ -42,7 +43,8 @@
                 HorizontalAlignment="Left" 
                 BorderThickness="2" 
                 materialDesign:HintAssist.Hint ="Copy To"
-                materialDesign:HintAssist.HintOpacity="0.75"/>
+                materialDesign:HintAssist.HintOpacity="0.75"
+                Text="{Binding DestinationPath,UpdateSourceTrigger=PropertyChanged}"/>
 
             <Button 
                 x:Name="btnTo"
@@ -54,11 +56,32 @@
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <ProgressBar 
+                Name="Progressbar"
                 Style="{StaticResource MaterialDesignLinearProgressBar}" 
-                Margin="20 0" 
+                Background="Transparent"
+                BorderBrush="Black"
+                Foreground="LawnGreen"
+                Value="0"
+                Margin="20 0 20 0" 
                 Height="20" 
                 VerticalAlignment="Center" 
                 Width="300"/>
+
+            <Button 
+                Margin="0 0 15 0"
+                x:Name="btnPauseAndResume"
+                Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                Content="Pause" 
+                Foreground="Black" 
+                BorderBrush="Black" Click="btnPauseAndResume_Click"/>
+
+            <Button 
+                Margin="10 0"
+                x:Name="btnCancel"
+                Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                Content="Cancel" 
+                Foreground="Black" 
+                BorderBrush="Black" Click="btnCancel_Click"/>
 
             <Button 
                 x:Name="btnCopy"
